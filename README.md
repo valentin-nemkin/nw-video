@@ -1,36 +1,109 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 Проект NW-VIDEO
 
-## Getting Started
+Преленд для трафика (ManyVids / Fansly / Dating)
 
-First, run the development server:
+---
+
+## 📂 О проекте
+
+NW-VIDEO — это одностраничный преленд, разработанный на **Next.js 16**, **Tailwind CSS 4** и **Framer Motion**.  
+Проект создан для работы с арбитражным трафиком и интеграции с трекером (через n8n и Facebook Pixel).
+
+---
+
+## ⚙️ Стек технологий
+
+- **Next.js 16 (App Router)**
+- **TypeScript**
+- **Tailwind CSS 4**
+- **Framer Motion**
+- **clsx**
+- **Node.js 22**
+
+---
+
+## 🧩 Структура веток
+
+- `main` — стабильная продакшн-версия  
+- `dev` — ветка для интеграций и тестов  
+- `feature/*` — отдельные ветки для этапов разработки  
+
+---
+
+## 🧰 Установка и запуск
 
 ```bash
+# 1. Клонировать проект
+git clone https://github.com/valentin-nemkin/nw-video.git
+
+# 2. Перейти в папку проекта
+cd nw-video
+
+# 3. Установить зависимости
+npm install
+
+# 4. Запустить локальный сервер
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Design Tokens & Components
+🎯 Основные принципы
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+В проекте используется единая дизайн-система, основанная на кастомных CSS-переменных и утилитарных классах Tailwind.
+Все токены и компоненты описаны в globals.css и tailwind.config.js.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+🧱 Цветовые токены (:root)
+Переменная	Назначение
+--color-background	Цвет фона страницы
+--color-foreground	Основной текст
+--color-primary	Основной акцент (CTA)
+--color-secondary	Вторичный акцент
+--color-card	Фон карточек
+--color-muted	Мягкий фон секций
+--color-border	Цвет границ
+--color-destructive	Ошибки / предупреждения
+🆎 Типографика
+Переменная	Назначение
+--font-primary	Основной текст (Manrope)
+--font-secondary	Заголовки (Inter)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Размеры заголовков заданы вручную в @layer base:
 
-## Learn More
+h1 — 2.25rem
 
-To learn more about Next.js, take a look at the following resources:
+h2 — 1.875rem
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+h3 — 1.5rem
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+🔘 Компоненты
+.btn
 
-## Deploy on Vercel
+Базовая кнопка (inline-flex, скругления, фокус, transition).
+Использует шрифт --font-secondary.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+.btn-cta
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Основная CTA-кнопка: фон --color-primary, hover — --color-secondary.
+
+.btn-cta--alt
+
+Альтернативная кнопка (инвертированный цветовой вариант, для A/B тестов).
+
+🗂 Утил-классы
+Класс	Назначение
+.card-base	Универсальная карточка с бордером, тенью и hover-эффектом
+.muted-bg	Мягкий фон секции
+.section-padding	Универсальные внутренние отступы секций
+📄 Base-слой
+
+Цвета и фон подтягиваются из var(--color-...)
+
+Ссылки с плавным hover и focus-outline
+
+Изображения и видео адаптивные, с закруглёнными углами
+
+Плавный скролл (scroll-behavior: smooth)
+
+⚡ Сборка и стабильность
+
+Tailwind CSS 4 не использует @apply в этом проекте —
+все стили прописаны в чистом CSS для полной совместимости с Next.js 16 (Turbopack).
+Благодаря этому исключены ошибки Cannot apply unknown utility class.

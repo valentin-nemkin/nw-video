@@ -1,17 +1,20 @@
+'use client'
+
+import Hero from '@/components/Sections/Hero'
+import Description from '@/components/Sections/Description'
+import CTASection from '@/components/Sections/CTASection'
+import PhotosGallery from '@/components/Sections/PhotosGallery'
+import Footer from '@/components/Sections/Footer'
+
 export default function Home() {
   return (
-    <main className="min-h-screen flex items-center justify-center bg-background text-foreground">
-      <div className="p-6 rounded-lg bg-card border border-border shadow-md text-center">
-        <h1 className="text-2xl font-bold mb-2 text-primary">
-          Палитра Natural Warm работает ✅
-        </h1>
-        <p className="text-secondary">
-          Если видишь светлый фон и контрастный текст — всё подключено правильно!
-        </p>
-        <button className="mt-4 px-4 py-2 rounded-md bg-primary text-background hover:bg-secondary transition">
-          Проверить CTA
-        </button>
-      </div>
+    <main className="flex flex-col items-center justify-center w-full">
+      {/* Главная структура сайта */}
+      <Hero />
+      <Description />
+      <CTASection />
+      <PhotosGallery />
+      <Footer />
     </main>
-  );
+  )
 }

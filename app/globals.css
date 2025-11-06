@@ -1,26 +1,184 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+/* === Цветовые переменные проекта (должны совпадать с палитрой в tailwind.config.js) === */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-background: #faf7f3;
+  --color-foreground: #1c1c1c;
+  --color-primary: #e6b57e;
+  --color-secondary: #b48b5c;
+  --color-card: #ffffff;
+  --color-muted: #f0ede9;
+  --color-border: #e2ded8;
+  --color-destructive: #dc2626;
+
+  --font-primary: 'Manrope', sans-serif;
+  --font-secondary: 'Inter', sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+/* === Базовые стили Tailwind === */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-primary);
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-secondary);
+    font-weight: 600;
+    color: var(--color-foreground);
+    line-height: 1.2;
+  }
+
+  h1 {
+    font-size: 2.25rem; /* 36px */
+  }
+
+  h2 {
+    font-size: 1.875rem; /* 30px */
+  }
+
+  h3 {
+    font-size: 1.5rem; /* 24px */
+  }
+
+  p {
+    margin-bottom: 1em;
+  }
+
+  a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  a:hover {
+    color: var(--color-secondary);
+  }
+
+  a:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  img, video {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+  }
+}
+/* === Компонентные стили кнопок === */
+@layer components {
+  /* === Базовый стиль кнопки === */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    font-family: var(--font-secondary);
+  }
+
+  .btn:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  .btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  /* === CTA — основной (вариант A) === */
+  .btn-cta {
+    background-color: var(--color-primary);
+    color: var(--color-foreground);
+    padding: 0.75rem 1.5rem; /* py-3 px-6 */
+  }
+
+  .btn-cta:hover {
+    background-color: var(--color-secondary);
+  }
+
+  .btn-cta:active {
+    transform: scale(0.97);
+  }
+
+  /* === CTA — альтернативный (вариант B) === */
+  .btn-cta--alt {
+    background-color: var(--color-foreground);
+    color: var(--color-background);
+    padding: 0.75rem 1.5rem;
+  }
+
+  .btn-cta--alt:hover {
+    background-color: var(--color-secondary);
+    color: var(--color-background);
+  }
+
+  /* === Размеры кнопок === */
+  .btn-sm {
+    font-size: 0.875rem; /* text-sm */
+    padding: 0.5rem 1rem; /* py-2 px-4 */
+  }
+
+  .btn-lg {
+    font-size: 1.125rem; /* text-lg */
+    padding: 1rem 2rem; /* py-4 px-8 */
+  }
+}
+@layer components {
+  /* === Базовая карточка === */
+  .card-base {
+    background-color: var(--color-card);
+    color: var(--color-foreground);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+    padding: 1.5rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .card-base:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+  }
+
+  /* === Мягкий фон для секций === */
+  .muted-bg {
+    background-color: var(--color-muted);
+    color: var(--color-foreground);
+  }
+
+  /* === Универсальные отступы секций === */
+  .section-padding {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .section-padding {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .section-padding {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}

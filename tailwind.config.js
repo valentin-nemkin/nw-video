@@ -1,6 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}', './app/**/*.{js,ts,jsx,tsx}'],
+  content: [
+    './app/**/*.{js,ts,jsx,tsx}',
+    './pages/**/*.{js,ts,jsx,tsx}',
+    './components/**/*.{js,ts,jsx,tsx}',
+    './content/**/*.{js,ts,jsx,tsx,md,mdx}', // на будущее — если будут тексты/блог
+  ],
   theme: {
     extend: {
       /* === Цветовая палитра проекта === */
@@ -17,8 +22,8 @@ module.exports = {
 
       /* === Шрифты === */
       fontFamily: {
-        primary: ['Manrope', 'sans-serif'],      // основной текст
-        secondary: ['Inter', 'sans-serif'],      // заголовки
+        primary: ['"Barlow Semi Condensed"', 'sans-serif'], // основной текст
+        secondary: ['"Fraunces"', 'serif'], // заголовки
       },
 
       /* === Контейнер === */
@@ -40,18 +45,6 @@ module.exports = {
         },
       },
 
-      /* === Скругления === */
-      borderRadius: {
-        none: '0',
-        sm: '4px',
-        DEFAULT: '8px',
-        md: '12px',
-        lg: '16px',
-        xl: '20px',
-        '2xl': '24px',
-        full: '9999px',
-      },
-
       /* === Тени === */
       boxShadow: {
         sm: '0 1px 2px rgba(0, 0, 0, 0.05)',
@@ -60,7 +53,13 @@ module.exports = {
         lg: '0 8px 16px rgba(0, 0, 0, 0.12)',
         xl: '0 12px 24px rgba(0, 0, 0, 0.15)',
       },
+
+      /* === Фоновые изображения === */
+      backgroundImage: {
+        'hero-desktop': "url('/images/hero-desktop.webp')",
+        'hero-mobile': "url('/images/hero-mobile.webp')",
+      },
     },
   },
   plugins: [],
-}
+};

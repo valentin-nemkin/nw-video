@@ -1,8 +1,9 @@
+/* === Tailwind Core Layers === */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* === Цветовые переменные проекта (должны совпадать с палитрой в tailwind.config.js) === */
+/* === Цветовые и шрифтовые переменные === */
 :root {
   --color-background: #faf7f3;
   --color-foreground: #1c1c1c;
@@ -13,11 +14,12 @@
   --color-border: #e2ded8;
   --color-destructive: #dc2626;
 
-  --font-primary: 'Manrope', sans-serif;
-  --font-secondary: 'Inter', sans-serif;
+  /* === Шрифты проекта === */
+  --font-primary: 'Barlow Semi Condensed', sans-serif; /* основной текст */
+  --font-secondary: 'Fraunces', serif; /* заголовки */
 }
 
-/* === Базовые стили Tailwind === */
+/* === Базовые стили === */
 @layer base {
   html {
     scroll-behavior: smooth;
@@ -27,63 +29,113 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-primary);
-    line-height: 1.6;
+    line-height: 1.7;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  /* === Заголовки === */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-secondary);
-    font-weight: 600;
+    font-weight: 600; /* заменяем @apply font-semibold */
     color: var(--color-foreground);
     line-height: 1.2;
   }
 
+  /* === Адаптивные размеры заголовков === */
   h1 {
-    font-size: 2.25rem; /* 36px */
+    font-size: 2.5rem;
+  }
+  @media (min-width: 640px) {
+    h1 {
+      font-size: 3.5rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    h1 {
+      font-size: 4.5rem;
+    }
   }
 
   h2 {
-    font-size: 1.875rem; /* 30px */
+    font-size: 2rem;
+  }
+  @media (min-width: 640px) {
+    h2 {
+      font-size: 2.5rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    h2 {
+      font-size: 3rem;
+    }
   }
 
   h3 {
-    font-size: 1.5rem; /* 24px */
+    font-size: 1.5rem;
+  }
+  @media (min-width: 640px) {
+    h3 {
+      font-size: 1.75rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    h3 {
+      font-size: 2rem;
+    }
   }
 
+  /* === Текст === */
   p {
+    font-size: 1.125rem;
+    line-height: 1.8;
     margin-bottom: 1em;
   }
+  @media (min-width: 640px) {
+    p {
+      font-size: 1.25rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    p {
+      font-size: 1.375rem;
+    }
+  }
 
+  /* === Ссылки === */
   a {
     color: var(--color-primary);
     text-decoration: none;
     transition: color 0.2s ease;
   }
-
   a:hover {
     color: var(--color-secondary);
   }
-
   a:focus-visible {
     outline: 2px solid var(--color-primary);
     outline-offset: 2px;
   }
 
-  img, video {
+  /* === Медиа === */
+  img,
+  video {
     display: block;
     max-width: 100%;
     height: auto;
-    border-radius: 12px;
   }
 }
-/* === Компонентные стили кнопок === */
+
+/* === Компоненты === */
 @layer components {
-  /* === Базовый стиль кнопки === */
   .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-weight: 500;
-    border-radius: 8px;
+    font-weight: 600; /* заменяем @apply font-semibold */
+    border-radius: 0.375rem;
     transition: all 0.2s ease;
     font-family: var(--font-secondary);
   }
@@ -98,22 +150,16 @@
     cursor: not-allowed;
   }
 
-  /* === CTA — основной (вариант A) === */
   .btn-cta {
     background-color: var(--color-primary);
     color: var(--color-foreground);
-    padding: 0.75rem 1.5rem; /* py-3 px-6 */
+    padding: 0.75rem 1.5rem;
   }
 
   .btn-cta:hover {
     background-color: var(--color-secondary);
   }
 
-  .btn-cta:active {
-    transform: scale(0.97);
-  }
-
-  /* === CTA — альтернативный (вариант B) === */
   .btn-cta--alt {
     background-color: var(--color-foreground);
     color: var(--color-background);
@@ -125,24 +171,20 @@
     color: var(--color-background);
   }
 
-  /* === Размеры кнопок === */
   .btn-sm {
-    font-size: 0.875rem; /* text-sm */
-    padding: 0.5rem 1rem; /* py-2 px-4 */
+    font-size: 0.875rem;
+    padding: 0.5rem 1rem;
   }
 
   .btn-lg {
-    font-size: 1.125rem; /* text-lg */
-    padding: 1rem 2rem; /* py-4 px-8 */
+    font-size: 1.125rem;
+    padding: 1rem 2rem;
   }
-}
-@layer components {
-  /* === Базовая карточка === */
+
   .card-base {
     background-color: var(--color-card);
     color: var(--color-foreground);
     border: 1px solid var(--color-border);
-    border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
     padding: 1.5rem;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -153,32 +195,38 @@
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
   }
 
-  /* === Мягкий фон для секций === */
   .muted-bg {
     background-color: var(--color-muted);
     color: var(--color-foreground);
   }
 
-  /* === Универсальные отступы секций === */
   .section-padding {
     padding-top: 4rem;
     padding-bottom: 4rem;
     padding-left: 1rem;
     padding-right: 1rem;
   }
-
   @media (min-width: 640px) {
     .section-padding {
       padding-left: 1.5rem;
       padding-right: 1.5rem;
     }
   }
-
   @media (min-width: 1024px) {
     .section-padding {
       padding-left: 2rem;
       padding-right: 2rem;
     }
   }
-}
 
+  .hero-svh {
+    height: 100vh;
+    min-height: 100vh;
+  }
+  @supports (height: 100svh) {
+    .hero-svh {
+      height: 100svh;
+      min-height: 100svh;
+    }
+  }
+}
